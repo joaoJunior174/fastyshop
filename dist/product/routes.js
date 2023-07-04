@@ -1,0 +1,12 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.productRouter = void 0;
+const router_factory_1 = require("../config/express/router-factory");
+const validate_super_cusstomer_authenticated_1 = require("../customer/middlewares/validate-super-cusstomer-authenticated");
+const action_factory_1 = require("./factories/action-factory");
+exports.productRouter = (0, router_factory_1.makeRouter)();
+(0, router_factory_1.makePostRouter)(exports.productRouter, action_factory_1.addProduct, "/", validate_super_cusstomer_authenticated_1.checkSuperCustomerToken);
+(0, router_factory_1.makeGetRouter)(exports.productRouter, action_factory_1.getAllProduct, "/all");
+(0, router_factory_1.makeGetRouter)(exports.productRouter, action_factory_1.getProductByName, "/:code");
+(0, router_factory_1.makeUpdateRouter)(exports.productRouter, action_factory_1.updateProductByName, '/:code', validate_super_cusstomer_authenticated_1.checkSuperCustomerToken);
+(0, router_factory_1.makeDeleteRouter)(exports.productRouter, action_factory_1.deleteProductByName, '/:code', validate_super_cusstomer_authenticated_1.checkSuperCustomerToken);

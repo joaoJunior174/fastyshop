@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.cartRouter = void 0;
+const router_factory_1 = require("../config/express/router-factory");
+const validate_customer_authenticated_1 = require("../customer/middlewares/validate-customer-authenticated");
+const action_factory_1 = require("./factories/action-factory");
+exports.cartRouter = (0, router_factory_1.makeRouter)();
+(0, router_factory_1.makePostRouter)(exports.cartRouter, action_factory_1.addItem, "/", validate_customer_authenticated_1.checkCustomerToken);
+(0, router_factory_1.makeGetRouter)(exports.cartRouter, action_factory_1.getActiveCart, '/', validate_customer_authenticated_1.checkCustomerToken);
+(0, router_factory_1.makeUpdateRouter)(exports.cartRouter, action_factory_1.saveShippingMethod, '/shipping-method', validate_customer_authenticated_1.checkCustomerToken);
+(0, router_factory_1.makeUpdateRouter)(exports.cartRouter, action_factory_1.saveShippingMethod, '/payment-method', validate_customer_authenticated_1.checkCustomerToken);
+(0, router_factory_1.makeUpdateRouter)(exports.cartRouter, action_factory_1.resetCart, '/reset', validate_customer_authenticated_1.checkCustomerToken);
+(0, router_factory_1.makeUpdateRouter)(exports.cartRouter, action_factory_1.removeItem, "/:code", validate_customer_authenticated_1.checkCustomerToken);
+(0, router_factory_1.makePostRouter)(exports.cartRouter, action_factory_1.generateCart, "/generate", validate_customer_authenticated_1.checkCustomerToken);

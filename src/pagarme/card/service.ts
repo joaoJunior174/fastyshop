@@ -1,0 +1,5 @@
+//export class PagarmeCardService {
+  //  async createCard(card: Card) {
+        
+   // }
+//}
